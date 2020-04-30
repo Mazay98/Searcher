@@ -1,0 +1,5 @@
+file:
+  max_size_kb: 51
+  mime_type:
+    txt: true
+    word: true
