@@ -8,6 +8,8 @@
       "email": "zavolod@yandex.ru"
     }
   ],
+  "license": "MIT",
+  "minimum-stability": "stable",
   "autoload": {
     "psr-4": {
       "Searcher\\": "src/"
