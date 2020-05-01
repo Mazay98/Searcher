@@ -58,7 +58,7 @@ class Search {
         }
 
         if( !file_exists($path_to_settings_file) ) {
-            throw new \InvalidArgumentException('FILE[not_exist]');
+            throw new \InvalidArgumentException('FILE_SETTINGS[not_exist]');
         }
 
         $this->settings = Yaml::parseFile($path_to_settings_file);
@@ -85,6 +85,8 @@ class Search {
 
         $file_limitations->checkFileSize($path_to_file);
         $file_limitations->checkMimeType($path_to_file);
+
+        $this->file = fopen($path_to_file, 'r');
         return true;
     }
 

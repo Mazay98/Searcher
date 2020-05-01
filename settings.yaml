@@ -1,5 +1,5 @@
 file:
-  max_size_kb: 51
+  max_size_kb: 1024
   mime_type:
     txt: true
     word: true
