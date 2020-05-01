@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Searcher\Search;
 
 class SearchTest extends TestCase {
+
     private $file;
 
     protected function setUp():void {
@@ -13,7 +14,7 @@ class SearchTest extends TestCase {
 
         $path_file = "./tests/TestFiles/file.txt";
         $f = fopen($path_file, "w");
-        fwrite($f,$text);
+        fwrite($f, $text);
         $this->file = $path_file;
         fclose($f);
 
@@ -28,13 +29,12 @@ class SearchTest extends TestCase {
     function testSearchSuccess() {
         $searcher = new Search();
         $result = $searcher->search($this->file, 'рыба');
-
         $this->assertEquals($result[0]['string'], 1);
         $this->assertEquals($result[0]['positions'], 7);
     }
 
     function testSearchMultiWords() {
-        $f = fopen($this->file,'a+');
+        $f = fopen($this->file, 'a+');
         $text = 'купил я сегодня собаку
         собаку купил сегодня я, купил я собаку сегодня';
         fwrite($f, $text);
@@ -54,14 +54,14 @@ class SearchTest extends TestCase {
         $this->assertEquals($result, 'NEEDLE_TEXT[not_found]');
     }
 
-    function testErrorFileExist (){
+    function testErrorFileExist() {
         $searcher = new Search();
         $result = $searcher->search('', 'ali');
 
         $this->assertEquals($result, 'FILE[not_exist]');
     }
 
-    function testTextNotСontainNeedle (){
+    function testTextNotСontainNeedle() {
         $searcher = new Search();
         $result = $searcher->search($this->file, 'ali');
 

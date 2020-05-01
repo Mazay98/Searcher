@@ -2,6 +2,7 @@
 namespace Searcher;
 use Symfony\Component\Yaml\Yaml;
 use Searcher\Limitations\Limitations;
+use Searcher\FTP\Ftp;
 
 class Search {
 
@@ -26,10 +27,21 @@ class Search {
     public function search($path_to_file, $needle, $path_to_settings = '') {
         try {
             $this->addSettings($path_to_settings);
+
+            if( isset($this->settings['storage']) ) {
+                $path_to_file = Ftp::getFilePath($this->settings['storage']);
+            }
+
+            if( $path_to_file === false ) {
+                throw new \InvalidArgumentException('FILE[not_write]');
+            }
+
             $this->setFile($path_to_file);
+
             if( !$needle ) {
                 throw new \InvalidArgumentException('NEEDLE_TEXT[not_found]');
             }
+
             $positions = $this->getPosition($needle);
             return $positions;
         } catch( \Exception $exception ) {
