@@ -27,10 +27,13 @@ class Search {
         try {
             $this->addSettings($path_to_settings);
             $this->setFile($path_to_file);
+            if( !$needle ) {
+                throw new \InvalidArgumentException('NEEDLE_TEXT[not_found]');
+            }
             $positions = $this->getPosition($needle);
             return $positions;
         } catch( \Exception $exception ) {
-            echo $exception;
+            return $exception->getMessage();
         }
     }
 
