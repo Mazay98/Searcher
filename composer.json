@@ -8,7 +8,6 @@
       "email": "zavolod@yandex.ru"
     }
   ],
-  "license": "MIT",
   "minimum-stability": "stable",
   "prefer-stable": true,
   "autoload": {
